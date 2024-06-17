@@ -40,9 +40,10 @@ boundary. All the small characters below are rendered to 16 rows, though few use
 
 # The alphabet
 
-The organization of this alphabet seems to be slaved to the glyphs Tektronix wanted to display.
-Note that any character that uses more than 16 dots will consume the subsequent character
-position so there are several gaps in the character codes.
+I wager that the organization of this alphabet is largely determined by the glyphs Tektronix
+wanted to display.
+Note that any character that needs more than 16 dots will consume the subsequent character
+position, so there are several gaps in the character codes.
 The first subsumed code is 0x07, followed by 0x0B.
 
 It's also interesting to note that each of the digits occurs no less than 4 times in this
@@ -181,4 +182,3 @@ alphabet, as all the digits appear large and small, as well as with and without 
 | 0xFB | ![0xFB character]({{site.baseurl}}/assets/osd-alphabet/FB.png) |
 | 0xFE | ![0xFE character]({{site.baseurl}}/assets/osd-alphabet/FE.png) |
 | 0xFF | ![0xFF character]({{site.baseurl}}/assets/osd-alphabet/FF.png) |
-
