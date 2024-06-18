@@ -142,8 +142,7 @@ appear large and small, as well as with and without decimal point.
 | 0x9E9D | ![9E9D character]({{site.baseurl}}/assets/osd-alphabet/9E9D.png) |
 | 0xA0 | ![A0 character]({{site.baseurl}}/assets/osd-alphabet/A0.png) |
 | 0xA2A1 | ![A2A1 character]({{site.baseurl}}/assets/osd-alphabet/A2A1.png) |
-| 0xA4 | ![A4 character]({{site.baseurl}}/assets/osd-alphabet/A4.png) |
-| 0xA5 | ![A5 character]({{site.baseurl}}/assets/osd-alphabet/A5.png) |
+| 0xA5A4 | ![A5A4 character]({{site.baseurl}}/assets/osd-alphabet/A5A4.png) |
 | 0xA6 | ![A6 character]({{site.baseurl}}/assets/osd-alphabet/A6.png) |
 | 0xA7 | ![A7 character]({{site.baseurl}}/assets/osd-alphabet/A7.png) |
 | 0xA8 | ![A8 character]({{site.baseurl}}/assets/osd-alphabet/A8.png) |
@@ -177,8 +176,7 @@ appear large and small, as well as with and without decimal point.
 | 0xD8D7 | ![D8D7 character]({{site.baseurl}}/assets/osd-alphabet/D8D7.png) |
 | 0xDAD9 | ![DAD9 character]({{site.baseurl}}/assets/osd-alphabet/DAD9.png) |
 | 0xDCDB | ![DCDB character]({{site.baseurl}}/assets/osd-alphabet/DCDB.png) |
-| 0xDE | ![DE character]({{site.baseurl}}/assets/osd-alphabet/DE.png) |
-| 0xDF | ![DF character]({{site.baseurl}}/assets/osd-alphabet/DF.png) |
+| 0xDFDE | ![DFDE character]({{site.baseurl}}/assets/osd-alphabet/DFDE.png) |
 | 0xE0 | ![E0 character]({{site.baseurl}}/assets/osd-alphabet/E0.png) |
 | 0xE2E1 | ![E2E1 character]({{site.baseurl}}/assets/osd-alphabet/E2E1.png) |
 | 0xE4 | ![E4 character]({{site.baseurl}}/assets/osd-alphabet/E4.png) |
@@ -190,10 +188,9 @@ appear large and small, as well as with and without decimal point.
 | 0xEE | ![EE character]({{site.baseurl}}/assets/osd-alphabet/EE.png) |
 | 0xF0 | ![F0 character]({{site.baseurl}}/assets/osd-alphabet/F0.png) |
 | 0xF1 | ![F1 character]({{site.baseurl}}/assets/osd-alphabet/F1.png) |
-| 0xF2 | ![F2 character]({{site.baseurl}}/assets/osd-alphabet/F2.png) |
-| 0xF3 | ![F3 character]({{site.baseurl}}/assets/osd-alphabet/F3.png) |
-| 0xF4 | ![F4 character]({{site.baseurl}}/assets/osd-alphabet/F4.png) |
-| 0xF6F5 | ![F6F5 character]({{site.baseurl}}/assets/osd-alphabet/F6F5.png) |
+| 0xF3F2 | ![F3F2 character]({{site.baseurl}}/assets/osd-alphabet/F3F2.png) |
+| 0xF5F4 | ![F5F4 character]({{site.baseurl}}/assets/osd-alphabet/F5F4.png) |
+| 0xF6 | ![F6 character]({{site.baseurl}}/assets/osd-alphabet/F6.png) |
 | 0xF7 | ![F7 character]({{site.baseurl}}/assets/osd-alphabet/F7.png) |
 | 0xF8 | ![F8 character]({{site.baseurl}}/assets/osd-alphabet/F8.png) |
 | 0xFA | ![FA character]({{site.baseurl}}/assets/osd-alphabet/FA.png) |
