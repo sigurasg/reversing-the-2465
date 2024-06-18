@@ -6,8 +6,8 @@ date: 2024-06-18
 # Ghidra all the things!
 
 When I first got it into my mind to reverse the 2465 firmware, I felt 
-[Ghidra](https://www.ghidra-sre.org/) was the obvious choice, as Ghidra is
-a powerful free reverse-engineering tool.
+[Ghidra](https://www.ghidra-sre.org/) was the obvious tool to use,
+as Ghidra is a powerful *free* reverse-engineering tool.
 
 So I installed the latest version of Ghidra at the time.
 I loaded up one of the ROM images and looked for an MC6800 disassembler.
@@ -50,7 +50,8 @@ not merged (as of June 2024).
 # Write a Ghidra plugin
 
 For one reason or another, I wasn't very motivated to work on the Ghidra reversing
-for a while. In the meantime, however, I did write a MAME emulator for the 2465.
+for a while. In the meantime, however, I did write a
+[MAME emulator](https://github.com/sigurasg/mame/tree/tek2465) for the 2465.
 More on that later.
 
 Around April 2024 my interest in this was again revived, due to some fun hacking
