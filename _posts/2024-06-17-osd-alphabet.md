@@ -14,7 +14,7 @@ Locating the OSD strings and converting them to ASCII would greatly help the rev
 # Deciphering
 
 In order to decipher the OSD alphabet it's necessary to understand how the readout system works.
-Thankfully the "Theory of Operation" (ToO) section in the service manuals has a solid explanation
+Thankfully, the "Theory of Operation" (ToO) section in the service manuals has a solid explanation
 of how the readout system renders the contents of character RAM to the CRT, through the contents
 of the character ROM.
 
@@ -47,8 +47,8 @@ Note that any character that needs more than 16 dots will consume the subsequent
 position, so there are several gaps in the character codes.
 The first subsumed code is 0x03, followed by 0x07 and 0x0B.
 
-It's also interesting to note that all of the digits occur 4 times in this alphabet, as they
-appear large and small, as well as with and without decimal point.
+It's also interesting to note that all the digits occur 4 times in this alphabet, as they
+appear large and small, as well as with and without a decimal point.
 
 | Code | Character |
 | --- | --- |
