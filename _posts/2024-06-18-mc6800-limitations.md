@@ -1,6 +1,6 @@
 ---
 title: "MC6800 limitations"
-date: 2024-06-19
+date: 2024-06-18
 ---
 
 # MC6800 ISA
