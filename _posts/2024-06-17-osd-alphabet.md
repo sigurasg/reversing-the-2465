@@ -137,8 +137,7 @@ appear large and small, as well as with and without decimal point.
 | 0x94 | ![94 character]({{site.baseurl}}/assets/osd-alphabet/94.png) |
 | 0x96 | ![96 character]({{site.baseurl}}/assets/osd-alphabet/96.png) |
 | 0x98 | ![98 character]({{site.baseurl}}/assets/osd-alphabet/98.png) |
-| 0x99 | ![99 character]({{site.baseurl}}/assets/osd-alphabet/99.png) |
-| 0x9A | ![9A character]({{site.baseurl}}/assets/osd-alphabet/9A.png) |
+| 0x9A99 | ![9A99 character]({{site.baseurl}}/assets/osd-alphabet/9A99.png) |
 | 0x9C | ![9C character]({{site.baseurl}}/assets/osd-alphabet/9C.png) |
 | 0x9E9D | ![9E9D character]({{site.baseurl}}/assets/osd-alphabet/9E9D.png) |
 | 0xA0 | ![A0 character]({{site.baseurl}}/assets/osd-alphabet/A0.png) |
