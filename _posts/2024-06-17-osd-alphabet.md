@@ -47,10 +47,8 @@ Note that any character that needs more than 16 dots will consume the subsequent
 position, so there are several gaps in the character codes.
 The first subsumed code is 0x07, followed by 0x0B.
 
-It's also interesting to note that most of the digits occur 4 times in this alphabet, as they
+It's also interesting to note that all of the digits occur 4 times in this alphabet, as they
 appear large and small, as well as with and without decimal point.
-
-Why is it that some of the large ones don't appear with a decimal point?
 
 | Code | Character |
 | --- | --- |
