@@ -14,15 +14,16 @@ Locating the OSD strings and converting them to ASCII would greatly help the rev
 # Deciphering
 
 In order to decipher the OSD alphabet it's necessary to understand how the readout system works.
-Thankfully the Theory of Operation (ThO) section in the service manuals has a solid explanation of how
-the readout system renders the contents of character RAM to the CRT, through the contents of the
-character ROM.
-The ThO describes how the circuitry works in excruciating detail, but the gist of it is this:
+Thankfully the "Theory of Operation" (ToO) section in the service manuals has a solid explanation
+of how the readout system renders the contents of character RAM to the CRT, through the contents
+of the character ROM.
+
+The ToO describes how the circuitry works in excruciating detail, but the gist of it is this:
 1. A byte in the readout RAM selects a character to display.
    The start address of the character in character ROM is simply character value * 16.
 2. Readout characters comprise a series of dots, where each is encoded into a byte.
-   The X, Y coordinates of each dot are encoded in 3 and 4 bits of the byte, respectively,
-   so each character can therefore be as wide as 8 dots, but as tall as 16.
+   The X, Y coordinates of each dot are respectively encoded in 3 and 4 bits of the byte,
+   which means each character can be as wide as 8 dots, but as tall as 16.
 3. A dot with the MSB clear ends the character.
 
 The way this is laid out is that some characters are designed to be used in pairs to make
@@ -46,8 +47,10 @@ Note that any character that needs more than 16 dots will consume the subsequent
 position, so there are several gaps in the character codes.
 The first subsumed code is 0x07, followed by 0x0B.
 
-It's also interesting to note that each of the digits occurs no less than 4 times in this
-alphabet, as all the digits appear large and small, as well as with and without decimal point.
+It's also interesting to note that most of the digits occur 4 times in this alphabet, as they
+appear large and small, as well as with and without decimal point.
+
+Why is it that some of the large ones don't appear with a decimal point?
 
 | Code | Character |
 | --- | --- |
