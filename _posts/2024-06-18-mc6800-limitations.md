@@ -7,8 +7,9 @@ date: 2024-06-18
 
 When I first started reading the disassembled code from the 2465, I was surprised at
 how it was structured.
-I grew up on the [Z80](https://en.wikipedia.org/wiki/Zilog_Z80) which, while only a couple of years "younger" than the [MC6800](https://en.wikipedia.org/wiki/Motorola_6800),
-has a whole lot of additional instruction set features that I didn't know to miss
+I grew up on the [Z80](https://en.wikipedia.org/wiki/Zilog_Z80), which, while only a
+couple of years "younger" than the [MC6800](https://en.wikipedia.org/wiki/Motorola_6800),
+has a lot of additional instruction set features that I didn't know to miss
 until I started reading MC6800 code.
 
 # MC6800 registers
@@ -47,7 +48,7 @@ programming.
 The problem isn't with the register set, but rather with the instruction set and
 addressing modes.
 There's simply no practical way to store the `X` to the stack, nor to load it from
-stack.
+the stack.
 
 If only there were 
 * `PSH X` 
@@ -56,12 +57,12 @@ If only there were
 instructions, or alternatively some way to load and store `X` from `A` and `B`,
 everything would work out fine.
 
-Also if it were possible to indirect `SP` with offset, e.g.
+Also, if it were possible to indirect `SP` with offset, e.g.
 * `LDA A 0x4,S`
 * `STA A, 0x4,S`
 
 it would be at least possible to pass arguments and store locals on stack.
-Alas, index addressing mode is exlusive to the `X` register.
+Alas, index addressing mode is exclusive to the `X` register.
 
 All told, what this means is that there's no practical way to pass arguments 
 and store local variables on the stack, which leads to code that largely has to:
@@ -97,7 +98,7 @@ All of this leads to this sort of code:
         RTS
 ```
 
-Since this is a general ulitity function and the code is non-rentrant, 
+Since this is a general utility function and the code is non-reentrant,
 it has to protect against reentrancy by disabling interrupts.
 
 # It's not all bad
