@@ -71,7 +71,7 @@ were some problems.
 * A remaining problem with the 2465 reversing was that it's quite tedious to create a
   new project around a set of ROM files.
 
-* A larger problem is that the Ghidra disassembler and decompliler do not understand
+* A larger problem is that the Ghidra disassembler and decompiler do not understand
   the ROM banking that occurs in the 2465A and 2465Bs.
 
   This makes reversing tedious as the disassembly does not propagate across banks
