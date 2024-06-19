@@ -58,7 +58,7 @@ instructions, or alternatively some way to load and store `X` from `A` and `B`,
 everything would work out fine.
 
 Also, if it were possible to indirect `SP` with offset, e.g.
-* `LDA A 0x4,S`
+* `LDA A, 0x4,S`
 * `STA A, 0x4,S`
 
 it would be at least possible to pass arguments and store locals on stack.
@@ -104,8 +104,8 @@ it has to protect against reentrancy by disabling interrupts.
 # It's not all bad
 
 For the purposes of reverse engineering this isn't all that bad.
-Since globals are used to widely, once a global that passes an argument
-or returns a result has been discovered, all use of the global show up
+Since globals are used so widely, once a global that passes an argument
+or returns a result has been discovered, all uses of the global show up
 as references in Ghidra.
 
 As a case in point, this does allow relatively easy discovery of most

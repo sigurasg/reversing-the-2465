@@ -27,7 +27,7 @@ Thankfully Ghidra's disassembler is "easily" extensible through "language specs"
 which are written in a language called
 [SLEIGH](https://fossies.org/linux/ghidra/GhidraDocs/languages/html/sleigh.html).
 
-SLEIGH is pretty cool, as a language spec allow Ghidra to transform the
+SLEIGH is pretty cool, as a language spec allows Ghidra to transform the
 disassembled code to P-Code, which allows Ghidra to reason about what the code
 does.
 This in turn enables Ghidra's decompiler, which often does a good job of

@@ -20,35 +20,40 @@ of the character ROM.
 
 The ToO describes how the circuitry works in excruciating detail, but the gist of it is this:
 1. A byte in the readout RAM selects a character to display.
-   The start address of the character in character ROM is simply character value * 16.
-2. Readout characters comprise a series of dots, where each is encoded into a byte.
-   The X, Y coordinates of each dot are respectively encoded in 3 and 4 bits of the byte,
-   which means each character can be as wide as 8 dots, but as tall as 16.
+
+   The start address of the character in character ROM is simply the readout RAM byte
+   value * 16.
+2. Readout characters comprise a series of dots.
+
+   Each dot is encoded into a byte, where the X, Y coordinates of each dot are
+   respectively encoded in 3 and 4 bits of the byte.
+   This means each character can be as wide as 8 dots, but as tall as 16.
 3. A dot with the MSB clear ends the character.
 
 The way this is laid out is that some characters are designed to be used in pairs to make
 a single large character.
-As the end goal is to be able to convert a series of OSD bytes into a human-readable string,
-these pairwise characters are considered a single character for our purposes.
+As the end goal is to be able to convert a series of OSD bytes into a human-readable
+string, these pairwise characters are considered a single character for our purposes.
 
-After some experimentation, I wrote a relatively simple python script to convert the character
-ROM to a bunch of PNG files.
+After some experimentation, I wrote a relatively simple python script to convert the
+character ROM to a bunch of PNG files.
 
 Initially I assumed that "small" characters would be 8x8 while the dual "large" characters
 would be 16x16.
-This is however not true, there are several "small" characters that extend below the 8 row
-boundary. All the small characters below are rendered to 16 rows, though few use the space.
+This is however not true.
+There are several "small" characters that extend below the 8 row boundary.
+All the small characters below are rendered to 16 rows, though few use the space.
 
-# The alphabet
+# The Alphabet
 
-I wager that the organization of this alphabet is largely determined by the glyphs Tektronix
-wanted to display.
-Note that any character that needs more than 16 dots will consume the subsequent character
+I wager that the organization of this alphabet is largely determined by the glyphs
+Tektronix wanted to display.
+Note that any glyph that needs more than 16 dots will consume the subsequent character
 position, so there are several gaps in the character codes.
 The first subsumed code is 0x03, followed by 0x07 and 0x0B.
 
 It's also interesting to note that all the digits occur 4 times in this alphabet, as they
-appear large and small, as well as with and without a decimal point.
+appear both large and small, as well as with and without a decimal point.
 
 | Code | Character |
 | --- | --- |
