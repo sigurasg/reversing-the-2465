@@ -1,6 +1,8 @@
 ---
+layout: post
 title: "On Screen Display (OSD) Alphabet"
 date: 2024-06-17
+author: Sigurður Ásgeirsson
 ---
 
 # Motivation

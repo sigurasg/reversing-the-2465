@@ -1,2 +1,16 @@
-theme: minima
+title: Reversing the Tektronix 2465 Firmware
 baseurl: /reversing-the-2465
+description: Trials and tribulations in reverse engineering
+  and emulation. Forever on the verge of technology, knowledge
+  and power.
+
+github_username: sigurasg
+
+timezone: America/Montreal
+theme: minima
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - README.md

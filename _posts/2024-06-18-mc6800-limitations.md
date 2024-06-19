@@ -1,6 +1,8 @@
 ---
+layout: post
 title: "MC6800 limitations"
 date: 2024-06-18
+author: Sigurður Ásgeirsson
 ---
 
 # MC6800 ISA

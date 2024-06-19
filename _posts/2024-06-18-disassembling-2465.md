@@ -1,6 +1,8 @@
 ---
+layout: post
 title: "Disassembling the 2465"
 date: 2024-06-18
+author: Sigurður Ásgeirsson
 ---
 
 # Ghidra all the things!
