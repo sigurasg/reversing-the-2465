@@ -37,7 +37,7 @@ There are two 8 bit accumulators which makes it easy to e.g. do arithmetic on tw
 8 bit values.
 
 The addressing modes are for the most part reasonable.
-*  The `A`, `B` and `X` registers can be loaded from and stored to 
+*  The `A`, `B` and `X` registers can be loaded from and stored to
    arbitrary immediate addresses (whether 8 or 16 bit).
 * `A` and `B` can be loaded from the other.
 * `X` can be loaded from `SP` and vice versa.
@@ -46,14 +46,20 @@ The addressing modes are for the most part reasonable.
 # No reentrant programming
 
 What's missing in the MC6800 instruction set, is any practical way to implement reentrant
-programming.
+programming[^1].
+
+[^1]: It's worth noting that the successor to the MC6800, the
+    [MC6809](https://en.wikipedia.org/wiki/Motorola_6809) remedied this by adding 
+    a whole lot of addressing modes, as well as a push instruction that can push
+    any register.
+
 The problem isn't with the register set, but rather with the instruction set and
 addressing modes.
 There's simply no practical way to store the `X` to the stack, nor to load it from
 the stack.
 
-If only there were 
-* `PSH X` 
+If only there were
+* `PSH X`
 * `PUL X`
 
 instructions, or alternatively some way to load and store `X` from `A` and `B`,
@@ -66,7 +72,7 @@ Also, if it were possible to indirect `SP` with offset, e.g.
 it would be at least possible to pass arguments and store locals on stack.
 Alas, index addressing mode is exclusive to the `X` register.
 
-All told, what this means is that there's no practical way to pass arguments 
+All told, what this means is that there's no practical way to pass arguments
 and store local variables on the stack, which leads to code that largely has to:
 * pass arguments in globals
 * store temporaries in globals
