@@ -80,7 +80,6 @@ and store local variables on the stack, which leads to code that largely has to:
 
 e.g. non-reentrant code.
 
-
 This is not to say that registers can't be used for those purposes, but what can
 be done with registers is quite limited, especially `X`.
 
