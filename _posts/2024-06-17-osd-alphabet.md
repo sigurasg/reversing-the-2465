@@ -5,13 +5,13 @@ date: 2024-06-17
 author: Sigurður Ásgeirsson
 ---
 
-# Motivation
-
 Strings can often provide solid clues or anchors when reversing code, as the strings referenced
 often give away the purpose of a piece of code in human-readable terms.
-The problem with the 2465 readout system in this respect, is that the strings are all written
+The problem with the 2465 readout system, in this respect, is that the strings are all written
 in the readout system's alphabet.
-Locating the OSD strings and converting them to ASCII would greatly help the reversing effort.
+
+Locating the OSD strings and converting them to ASCII would greatly help the reversing effort,
+so that's what I did.
 
 # Deciphering
 
