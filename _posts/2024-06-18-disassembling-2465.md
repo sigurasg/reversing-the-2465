@@ -5,19 +5,16 @@ date: 2024-06-18
 author: Sigurður Ásgeirsson
 ---
 
-# Ghidra all the things!
-
 When I first got it into my mind to reverse the 2465 firmware, I felt 
 [Ghidra](https://www.ghidra-sre.org/) was the obvious tool to use,
 as Ghidra is a powerful *free* reverse-engineering tool.
-
-So I installed the latest version of Ghidra at the time.
-I loaded up one of the ROM images and looked for an MC6800 disassembler.
+So I installed the latest version of Ghidra at the time, loaded up one of the
+ROM images and looked for an MC6800 disassembler.
 Ghidra didn't offer the MC6800 processor, but it did have the 6805, so I tried
 that.
+
 This didn't produce promising results, and as I recall the disassembler quickly
 ran into instructions it couldn't handle.
-
 Naively, I had figured the 6805 must be a close relative of the MC6800, but alas
 that's not true.
 The 6805 has a very different architecture than the MC6800, and while the two share

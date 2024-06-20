@@ -5,8 +5,6 @@ date: 2024-06-18
 author: Sigurður Ásgeirsson
 ---
 
-# MC6800 ISA
-
 When I first started reading the disassembled code from the 2465, I was surprised at
 how it was structured.
 I grew up on the [Z80](https://en.wikipedia.org/wiki/Zilog_Z80), which, while only a
