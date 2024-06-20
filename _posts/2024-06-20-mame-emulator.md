@@ -11,7 +11,8 @@ would derail pretty quickly.
 I got to wonder if there might be an "easier way"; imagine if I could observe the
 firmware running, trace and debug it.
 
-At the time I knew nothing about MAME except that it existed.
+At the time I knew nothing about [MAME](https://github.com/mamedev/mame) except
+that it existed.
 After a quick look at the sources it looked quite promising and actually writing
 an emulator looked straightforward, if perhaps tedious.
 
@@ -65,7 +66,7 @@ digital controls:
   * Cursors work.
   * The front panel controls work (if used carefully).
   * Front panel LEDs work.
-  * The calibration and ID jumpers work. 
+  * The calibration and ID jumpers work.
   * Relays click at appropriate times.
 
 All the Tektronix custom hybrids have some sort of representation in the emulation, and
