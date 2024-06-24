@@ -4,7 +4,8 @@ layout: home
 
 The Tektronix 2400-series analog oscilloscopes are arguably the best portable analog scopes
 ever built.
-I have two scopes from the series, a 2465 and a 2467, the latter of which is my favorite for
+I have two scopes from the series, a [2465](https://w140.com/tekwiki/wiki/2465) and a
+[2467](https://w140.com/tekwiki/wiki/2467), the latter of which is my favorite for
 general spelunking.
 The 2467 has the counter-timer (CTT) option, which is quite handy, as it provides a counter and
 all kinds of timing functions.
