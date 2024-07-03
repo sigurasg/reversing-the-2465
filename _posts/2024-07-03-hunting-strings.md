@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Be wevy vewy quiet, I'm hunting strings"
+title: "Be vewy vewy quiet, I'm hunting strings"
 date: 2024-07-03
 author: Sigurður Ásgeirsson
 ---
@@ -8,7 +8,7 @@ After I'd written the
 [MC6800 language spec](https://github.com/sigurasg/GhidraTek2465/blob/main/data/languages/mc6800.slaspec)
 and the
 [Ghidra Plugin](https://github.com/sigurasg/GhidraTek2465?tab=readme-ov-file#ghidratek2465),
-and after decoding the [OSD alphabet]({%post_url 2024-06-17-osd-alphabet%}),
+and after decoding the [OSD alphabet]({{site.baseurl}}{%post_url 2024-06-17-osd-alphabet%}),
 it was time to go hunting for OSD strings.
 Walking through the power-on-self-test (POST) routines is relatively straightforward and
 eventually leads to code that writes to the OSD.
@@ -17,7 +17,7 @@ From there it's largely a matter of a little bit of automation.
 
 # Automating the OSD string search
 
-Because of the [limitations of the MC6800]({%post_url 2024-06-18-mc6800-limitations %}),
+Because of the [limitations of the MC6800]({{site.baseurl}}{%post_url 2024-06-18-mc6800-limitations %}),
 it turns out that the pointer to each OSD string is written to a global variable,
 which in turn is a "parameter" for the function that writes the OSD.
 It also turns out that the MC6800 offers only one good way to load a pointer into a global:
