@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Be vewy vewy quiet, I'm hunting strings"
+title: "Be vewy vewy quiet, I'm hunting stwings"
 date: 2024-07-03
 author: Sigurður Ásgeirsson
 ---
