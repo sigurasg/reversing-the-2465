@@ -44,12 +44,15 @@ The addressing modes are for the most part reasonable.
 # No reentrant programming
 
 What's missing in the MC6800 instruction set, is any practical way to implement reentrant
-programming[^1].
+programming[^1][^2].
 
 [^1]: It's worth noting that the successor to the MC6800, the
     [MC6809](https://en.wikipedia.org/wiki/Motorola_6809) remedied this by adding 
     a whole lot of addressing modes, as well as a push instruction that can push
     any register.
+
+[^2]: Even the [MC6801](http://www.bitsavers.org/components/motorola/6801/MC6801RM_AD2_MC6801_Reference_Manual_May84.pdf#page=101)
+    has the fix in with `PSHX` and `PULX`.
 
 The problem isn't with the register set, but rather with the instruction set and
 addressing modes.
