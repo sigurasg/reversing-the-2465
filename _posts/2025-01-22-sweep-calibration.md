@@ -89,15 +89,15 @@ allow limit checking on the slope/offset values.
 ### Reference slope
 
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
-up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV $$.
+up the first reference slope, which *after* CRT adjustment will be $$ 100\mu \ s/DIV $$ .
 
 To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope
 fairly close to the intended *voltage* slope.
 The technician is then directed to select the 2nd and 10th timing markers on the A-sweep
 and to superimpose the timing markers on the B-sweep.
-Once this is done we have a situation where $$ \Delta d = d_1 - d_0$$, the difference between
+Once this is done we have a situation where $$ \Delta d = d_1 - d_0 $$ , the difference between
 the calibrated voltages $$ d_0 $$ = `DLY_REF_O` and $$ d_1 $$ = `DLY_REF_1` represents a
-well-defined time $$ \Delta t $$.
+well-defined time $$ \Delta t $$ .
 
 TODO: Talk about steps t-w, looks like they just verify `r)`?
 
@@ -106,12 +106,12 @@ that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
 more likely to compute the `timing reference` needed for the intended reference voltage
-slope $$ s_r = cV / {100 \mu s} $$.
+slope $$ s_r = cV / {100 \mu s} $$ .
 
 Either way the reference slope can be assumed to
-be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s $$.
+be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s $$ .
 
-What's the bet that $$ c = 1V $$?
+What's the bet that $$ c = 0.1V $$ ?
 
 
 ### Horizontal CRT calibration
@@ -119,9 +119,9 @@ What's the bet that $$ c = 1V $$?
 The next step (step `aa` in the 2465B calibration sequence) involves adjusting horizontal
 gains to align the cursors, then the CRT to the timing markers under the reference slope.
 
-After this step concludes, one horizontal DIV is has been calibrated to equal $$c \ V$$,
-so the the CRT has now been calibrated to a known horizontal voltage, e.g. $$ 1DIV=c \ V$$
-meaning that $$1 \ V = 1/c \ DIV$$.
-It follows that any slope $$ s = k \ V/s = k/c \ DIV/s $$, e.g. it is now possible to
+After this step concludes, one horizontal DIV is has been calibrated to equal $$ c \ V$0.$,
+so the the CRT has now been calibrated to a known horizontal voltage, e.g. $$ 1DIV=c \ V $$
+meaning that $$ 1 \ V = 1/c \ DIV $$ .
+It follows that any slope $$ s = k \ V/s = k/c \ DIV/s $$ , e.g. it is now possible to
 trivially convert any slope to a sweep speed.
 
