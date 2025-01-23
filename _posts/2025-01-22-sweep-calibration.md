@@ -29,12 +29,12 @@ In some cases, both modes are involved.
 In the case of the sweep hybrids, both a serial bitstring and analog voltages are involved.
 
 Each of the two sweep hybrids in the 2465-series contains a pair of dies, a
-[203-0214-90 Sweep Integrator](https://w140.com/tekwiki/images/c/c9/Tek-Made_Integrated_Circuits_Catalog.pdf#page=295) a 
+[203-0214-90 Sweep Integrator](https://w140.com/tekwiki/images/c/c9/Tek-Made_Integrated_Circuits_Catalog.pdf#page=295) a
 [203-0231-90 Sweep DAC](https://w140.com/tekwiki/images/c/c9/Tek-Made_Integrated_Circuits_Catalog.pdf#page=323) plus
 a handful of resistors and capacitors.
 The Tek-Made catalog contains what appears to be
 [a schematic](https://w140.com/tekwiki/images/c/c9/Tek-Made_Integrated_Circuits_Catalog.pdf#page=301)
-of the entire hybrid. 
+of the entire hybrid.
 
 The sweep hybrid implements a conventional constant current slope generator with switchable
 current ranges and timing capacitors.
@@ -60,7 +60,7 @@ This is primarily used to initiate delay sweeps, but is also used in sneaky ways
 The A5 board generates two delay reference signals, namely `DLY_REF_0` and `DLY_REF_1`.
 Both of those can be routed to both sweep hybrids under control of the Display Sequencer.
 Under dual delay sweeps, the two voltages are alternately routed to the `DR` pin by logic in the
-Display Sequencer. 
+Display Sequencer.
 
 # Calibration
 
@@ -89,31 +89,39 @@ allow limit checking on the slope/offset values.
 ### Reference slope
 
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
-up the first reference slope, which *after* CRT adjustment will be 100&mu;s/DIV.
+up the first reference slope, which *after* CRT adjustment will be $$100 \mu s/DIV$$.
 
-To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope 
+To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope
 fairly close to the intended *voltage* slope.
 The technician is then directed to select the 2nd and 10th timing markers on the A-sweep
 and to superimpose the timing markers on the B-sweep.
-Once this is done we have a situation where &Delta;d, the difference between the calibrated
-voltages d<sub>0</sub> = `DLY_REF_O` and d<sub>1</sub> = `DLY_REF_1` represents a
-well-defined time delta &Delta;t.
+Once this is done we have a situation where $$\Delta d = d_1 - d_0$$, the difference between
+the calibrated voltages $$d_0$$ = `DLY_REF_O` and $$d_1$$ = `DLY_REF_1` represents a
+well-defined time $$ \Delta t$$.
 
 TODO: Talk about steps t-w, looks like they just verify `r)`?
 
-The slope can now be computed simply as s<sub>strawman</sub>=&Delta;d/&Delta;t V/s - note
+The slope can now be computed simply as $$s_s =\Delta d/\Delta t \ V/s $$ - note
 that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
-more likely to compute the `timing reference` needed for the intended voltage slope
-s<sub>ref</sub> = $(`c`V)/(100&mu;s)$.
+more likely to compute the `timing reference` needed for the intended reference voltage
+slope $$ s_r = cV /100 \mu s$$.
 
-Either way the reference slope can be assumed to be s<sub>ref</sub> = $(`c`V)/(100&mu;s)$.
+Either way the reference slope can be assumed to
+be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s$$.
+
+What's the bet that $$ c = 1V $$?
 
 
 ### Horizontal CRT calibration
 
 The next step (step `aa` in the 2465B calibration sequence) involves adjusting horizontal
 gains to align the cursors, then the CRT to the timing markers under the reference slope.
-After this step concludes, the CRT is now calibrated horizontally to `c` DIV/V, so any slope
-`kc` V/s is implicitly equal to `k` DIV/s.
+
+After this step concludes, one horizontal DIV is has been calibrated to equal $$c \ V$$,
+so the the CRT has now been calibrated to a known horizontal voltage, e.g. $$ 1DIV=c \ V$$
+meaning that $$1 \ V = 1/c \ DIV$$.
+It follows that any slope $$ s = k \ V/s = k/c \ DIV/s $$, e.g. it is now possible to
+trivially convert any slope to a sweep speed.
+

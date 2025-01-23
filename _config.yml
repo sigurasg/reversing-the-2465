@@ -5,6 +5,7 @@ description: Trials and tribulations in reverse engineering
   and emulation. Forever on the verge of technology, knowledge
   and power.
 show_excerpts: true
+markdown: kramdown
 
 github_username: sigurasg
 
@@ -16,3 +17,7 @@ plugins:
 
 exclude:
   - README.md
+
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
