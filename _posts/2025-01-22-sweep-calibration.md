@@ -89,19 +89,19 @@ allow limit checking on the slope/offset values.
 ### Reference slope
 
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
-up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV$$.
+up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV $$.
 
 To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope
 fairly close to the intended *voltage* slope.
 The technician is then directed to select the 2nd and 10th timing markers on the A-sweep
 and to superimpose the timing markers on the B-sweep.
-Once this is done we have a situation where $$\Delta d = d_1 - d_0$$, the difference between
-the calibrated voltages $$d_0$$ = `DLY_REF_O` and $$d_1$$ = `DLY_REF_1` represents a
+Once this is done we have a situation where $$ \Delta d = d_1 - d_0$$, the difference between
+the calibrated voltages $$ d_0 $$ = `DLY_REF_O` and $$ d_1 $$ = `DLY_REF_1` represents a
 well-defined time $$ \Delta t $$.
 
 TODO: Talk about steps t-w, looks like they just verify `r)`?
 
-The slope can now be computed simply as $$s_s =\Delta d/\Delta t \ V/s $$ - note
+The slope can now be computed simply as $$ s_s =\Delta d/\Delta t \ V/s $$ - note
 that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
