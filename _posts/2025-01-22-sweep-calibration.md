@@ -97,7 +97,7 @@ The technician is then directed to select the 2nd and 10th timing markers on the
 and to superimpose the timing markers on the B-sweep.
 Once this is done we have a situation where $$\Delta d = d_1 - d_0$$, the difference between
 the calibrated voltages $$d_0$$ = `DLY_REF_O` and $$d_1$$ = `DLY_REF_1` represents a
-well-defined time $$ \Delta t$$.
+well-defined time $$ \Delta t $$.
 
 TODO: Talk about steps t-w, looks like they just verify `r)`?
 
@@ -106,7 +106,7 @@ that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
 more likely to compute the `timing reference` needed for the intended reference voltage
-slope $$ s_r = cV /100 \mu s $$.
+slope $$ s_r = cV / {100 \mu s} $$.
 
 Either way the reference slope can be assumed to
 be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s $$.
