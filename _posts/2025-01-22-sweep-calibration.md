@@ -106,7 +106,10 @@ that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
 more likely to compute the `timing reference` needed for the intended voltage slope
-s<sub>100&mu;s/DIV</sub> = `c` V/s.
+s<sub>ref</sub> = $(`c`V)/(100&mu;s)$.
+
+Either way the reference slope can be assumed to be s<sub>ref</sub> = $(`c`V)/(100&mu;s)$.
+
 
 ### Horizontal CRT calibration
 
