@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2465 Calibration"
+title: "2465 Sweep Calibration"
 date: 2025-01-22
 author: Sigurður Ásgeirsson
 ---
@@ -119,9 +119,10 @@ What's the bet that $$ c = 0.1V $$ ?
 The next step (step `aa` in the 2465B calibration sequence) involves adjusting horizontal
 gains to align the cursors, then the CRT to the timing markers under the reference slope.
 
-After this step concludes, one horizontal DIV is has been calibrated to equal $$ c \ V$0.$,
-so the the CRT has now been calibrated to a known horizontal voltage, e.g. $$ 1DIV=c \ V $$
-meaning that $$ 1 \ V = 1/c \ DIV $$ .
+After this step concludes, one horizontal DIV is has been calibrated to equal $$ c \ V $$,
+so the CRT has now been calibrated to a known horizontal voltage, e.g. $$ 1DIV=c \ V $$
+meaning that $$ 1 \ V = 1/c \ DIV $$.
+
 It follows that any slope $$ s = k \ V/s = k/c \ DIV/s $$ , e.g. it is now possible to
 trivially convert any slope to a sweep speed.
 
