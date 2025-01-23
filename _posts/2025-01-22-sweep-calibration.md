@@ -89,7 +89,7 @@ allow limit checking on the slope/offset values.
 ### Reference slope
 
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
-up the first reference slope, which *after* CRT adjustment will be $$100 \mu s/DIV$$.
+up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV$$.
 
 To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope
 fairly close to the intended *voltage* slope.
@@ -106,10 +106,10 @@ that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
 more likely to compute the `timing reference` needed for the intended reference voltage
-slope $$ s_r = cV /100 \mu s$$.
+slope $$ s_r = cV /100 \mu s $$.
 
 Either way the reference slope can be assumed to
-be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s$$.
+be $$ s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s $$.
 
 What's the bet that $$ c = 1V $$?
 
