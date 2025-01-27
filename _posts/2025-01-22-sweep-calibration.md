@@ -41,38 +41,71 @@ current ranges and timing capacitors.
 What's different from older analog scopes is that there is no mechanical switching, all the switching
 is implemented electronically.
 
-### Sweep slope
+### Sweep Slope
 
 To set up a particular sweep slope, a 7 bit serial bitstring is shifted into the Sweep DAC die, which
 selects the coarse-level current generator and the timing capacitor.
 The slope is then selected or adjusted with a `timing reference` analog voltage from the A5 board,
 which is one of `A_TIM_REF` or `B_TIM_REF` for the A or B sweeps respectively.
 Since the sweep current is linearly related to the `timing reference` voltage, so is the sweep slope.
+
 The sweep calibration process consists of setting up a series of calibrated sweep slopes at particular
 sweep speeds, but since the slope is under MPU control through the `timing reference` voltages,
 the 2465-series has calibrated sweep speeds even with the SEC/DIV `VAR` control out of detent.
 
-### Delay comparator
+### Delay Comparator
 
-Each sweep hybrid also contains a fast comparator that compares the sweep ramp to a `delay reference`
+Each sweep hybrid contains a fast comparator that compares the sweep ramp to a `delay reference`
 analog voltage on the `DR` pin of the sweep hybrid.
 This is primarily used to initiate delay sweeps, but is also used in sneaky ways during calibration.
-The A5 board generates two delay reference signals, namely `DLY_REF_0` and `DLY_REF_1`.
+The A5 board generates two delay reference signals, namely `DLY_REF_0` and `DLY_REF_1`, hereafter
+named $$d_0 $$ and $$d_1 $$.
 Both of those can be routed to both sweep hybrids under control of the Display Sequencer.
 Under dual delay sweeps, the two voltages are alternately routed to the `DR` pin by logic in the
 Display Sequencer.
 
-# Calibration
+# Sweep Calibration
 
 ## Principle
 
 The principle of sweep calibration in the 2465 series is that using a human as a comparator,
 against a calibrated timing signal, a series of calibrated sweep slopes are configured.
 
+The calibrated sweep slopes all assume the same CRT deflection factor $$d = c \ V/DIV $$, where
+$$c = 0.25 $$.
+
+For each target slope, the calibration firmware creates a target for the human to aim for,
+by setting $$\Delta d = d_1 - d_0 $$ to a voltage difference that matches the targeted
+time delta. So, as an example, at a sweep speed of $$v = 100 \ \mu s/DIV $$, the targeted 
+slope is $$s = 1/v \ DIV/s \ d \ V/DIV = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV = 25 \ 10^6 \ V/s $$.
+
+To target this slope, the calibration firmware instructs the technician to highlight
+the 2nd and 10th timing markers and to superimpose them in the B-sweep. It then
+sets the two delay references to a difference of 8DIV, which works out to
+$$\Delta d = 8 \ DIV * 0.25 \ V/DIV = 2 \ V $$.
+
+Once the technician has aligned the two timing markers as instructed, the target slope
+has been attained with a high degree of accuracy.
+Since the `DLY_REF_*` signals have pretty high resolution (somewhere in excess of 350 steps/DIV),
+and because the B-sweep (or the bench scope) have a time magnifiying effect, the target slope
+alignment is much more accurate than the old timey practice that involved aligning
+timing markers to a CRT.
+
+### Prerequisites
+
+It's important to validate all power supplies and to perform the DAC calibration before
+attempting the sweep calibration.
+If the power supplies are no good, then the calibration is unlikely to succeed.
+If the DAC is out a little, the calibration may succeed, but any future calibration is
+likely to need a full redo.
+If the DAC is out a lot, the calibration will likely fail with the dreaded `LIMITS`
+error.
+
 ### Pre-flight checking
 
 The first step in the sweep calibration is to to verify that the `DLY_REF_O` and `DLY_REF_1`
 signals are in concordance.
+
 This is step `o)` in the 2465B calibration sequence, where both delay markers are aligned
 on the same timing mark and the B-sweep magnified timing markers are aligned.
 It's a fair guess that if the DAC codes used to set the two voltages are not near-identical,
@@ -91,17 +124,21 @@ allow limit checking on the slope/offset values.
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
 up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV $$.
 
-To do this, the calibration firmware initiates a `strawman` sweep that has a *voltage* slope
-fairly close to the intended *voltage* slope.
-The technician is then directed to select the 2nd and 10th timing markers on the A-sweep
-and to superimpose the timing markers on the B-sweep.
-Once this is done we have a situation where $$\Delta d = d_1 - d_0 $$, the difference between
+To do this, the calibration firmware initiates a `strawman` sweep that has a slope
+fairly close to the intended slope.
+
+The technician is then directed to use the `DLY` and `DLY REF` controls to highlight the
+2nd and 10th timing markers on the A-sweep and to superimpose the timing markers on the B-sweep.
+
+One of those controls adjusts the ... TODO
+
+Once this is done we have a situation where $$\Delta d = d_1 - d_0 \ V $$, the difference between
 the calibrated voltages $$d_0 $$= `DLY_REF_O` and $$d_1 $$= `DLY_REF_1` represents a
 well-defined time $$\Delta t $$.
 
 TODO: Talk about steps t-w, looks like they just verify `r)`?
 
-The slope can now be computed simply as $$s_s =\Delta d/\Delta t \ V/s $$- note
+The slope can now be computed simply as $$s_s =\Delta d/\Delta t \ V/s $$. Note
 that this and all subsequent slopes are voltage slopes.
 
 It is now possible for the firmware to either use the `strawman` slope as reference, or
@@ -110,8 +147,6 @@ slope $$s_r = cV / {100 \mu s} $$.
 
 Either way the reference slope can be assumed to
 be $$s_r = c/100 \mu \ V/s = c/10^{-6} \ V/s =  s_r = c*10^6 \ V/s $$.
-
-What's the bet that $$c = 0.1V $$?
 
 
 ### Horizontal CRT calibration
