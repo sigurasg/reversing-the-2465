@@ -71,8 +71,7 @@ Display Sequencer.
 The principle of sweep calibration in the 2465 series is that a series of calibrated sweep
 slopes are configured using a technician as a comparator against a calibrated timing signal.
 The delay comparators in the sweep hybrids are used to create a target slope for the
-technician to target, which allows sweep slope calibration without regard to calibration
-of the CRT.
+technician to match, which allows sweep slope calibration without regard to CRT calibration.
 
 Note that the calibrated sweep slopes all assume the same CRT deflection factor
 $$d = c \ V/DIV $$, where $$c = 0.25 $$.
@@ -84,7 +83,15 @@ CRT to this normalized deflection factor.
 For each target slope, the calibration firmware creates a target for the technician to aim for,
 by setting $$\Delta d = d_1 - d_0 $$ to a voltage difference that matches the targeted
 time delta. So, as an example, at a sweep speed of $$v = 100 \ \mu s/DIV $$, the targeted
-slope is $$s = 1/v \ DIV/s \ d \ V/DIV = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV = 25 \ 10^6 \ V/s $$.
+slope is
+
+$$s = 1/v \ DIV/s \ d \ V/DIV => $$
+
+$$ s = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV => $$
+
+$$ s = 1/(10^-4) \ DIV/s \ 0.25 \ V/DIV => $$
+
+$$ s = 2500 \ V/s $$
 
 To target this slope, the calibration firmware instructs the technician to highlight
 the 2nd and 10th timing markers and to superimpose them in the B-sweep. It then
@@ -93,10 +100,10 @@ $$\Delta d = 8 \ DIV * 0.25 \ V/DIV = 2 \ V $$.
 
 Once the technician has aligned the two timing markers as instructed, the target slope
 has been attained with a high degree of accuracy.
-Since the `DLY_REF_*` signals have pretty high resolution (somewhere in excess of 350 steps/DIV),
-and because the B-sweep (or the bench scope) have a time magnifiying effect, the target slope
-alignment is much more accurate than the old timey practice that involved aligning
-timing markers to a CRT.
+Since the $$d_0 $$ and $$d_1 $$ signals have pretty high resolution (somewhere in excess
+of 350 steps/DIV), and because the B-sweep (or the bench scope) have a time magnifiying
+effect, the target slope alignment is much more accurate than the old timey practice
+that involved aligning timing markers to a CRT.
 
 ## Calibration steps
 
@@ -112,7 +119,7 @@ error.
 
 ### Pre-flight checking
 
-The first step in the sweep calibration is to to verify that the `DLY_REF_O` and `DLY_REF_1`
+The first step in the sweep calibration is to to verify that the $$d_0 $$ and $$d_1 $$
 signals are in concordance.
 
 This is step `o)` in the 2465B calibration sequence, where both delay markers are aligned
@@ -141,8 +148,8 @@ A target slope is then set, using the delay references as discussed above.
 The technician is then directed to use the `DLY POS` and $$\Delta $$ controls to highlight the
 2nd and 10th timing markers on the A-sweep and to superimpose the timing markers on the B-sweep.
 One of those controls adjusts the `A_TIM_REF` signal, which in turn adjusts the slope of
-the on-screen sweep. The other control offsets the timing markers by adjusting the `DLY_REF_0`
-and `DLY_REF_1` voltages by the same amount.
+the on-screen sweep. The other control offsets the timing markers by adjusting the $$d_0 $$
+and $$d_1 $$ voltages by the same amount.
 
 Once this is achieved, the target slope has been set.
 
