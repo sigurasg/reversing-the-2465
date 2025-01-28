@@ -69,14 +69,15 @@ Display Sequencer.
 ## Principle
 
 The principle of sweep calibration in the 2465 series is that a series of calibrated sweep
-slopes are configured using a technician as a comparator against a calibrated timing signal.
+slopes are configured, using a technician as a comparator against a calibrated timing signal.
 The delay comparators in the sweep hybrids are used to create a target slope for the
 technician to match, which allows sweep slope calibration without regard to CRT calibration.
 
 Note that the calibrated sweep slopes all assume the same CRT deflection factor
 $$d_{CRT} = c \ V/DIV $$, where $$c = 0.25 $$.
 Once the first sweep slope has been established, the horizontal gains are adjusted to set the
-CRT to this normalized deflection factor.
+CRT to this normalized deflection factor, in order to obtain calibrated sweeps in
+seconds per DIV.
 
 ### Details
 
