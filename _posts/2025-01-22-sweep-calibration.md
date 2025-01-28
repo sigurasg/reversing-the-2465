@@ -74,7 +74,7 @@ The delay comparators in the sweep hybrids are used to create a target slope for
 technician to match, which allows sweep slope calibration without regard to CRT calibration.
 
 Note that the calibrated sweep slopes all assume the same CRT deflection factor
-$$d = c \ V/DIV $$, where $$c = 0.25 $$.
+$$d_{CRT} = c \ V/DIV $$, where $$c = 0.25 $$.
 Once the first sweep slope has been established, the horizontal gains are adjusted to set the
 CRT to this normalized deflection factor.
 
@@ -85,17 +85,17 @@ by setting $$\Delta d = d_1 - d_0 $$ to a voltage difference that matches the ta
 time delta. So, as an example, at a sweep speed of $$v = 100 \ \mu s/DIV $$, the targeted
 slope is
 
-$$s = 1/v \ DIV/s \ d \ V/DIV => $$
+$$slope = 1/v \ DIV/s \ d_{CRT} \ V/DIV => $$
 
-$$ s = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV => $$
+$$slope = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV => $$
 
-$$ s = 1/(10^-4) \ DIV/s \ 0.25 \ V/DIV => $$
+$$slope = 1/(10^-4) \ DIV/s \ 0.25 \ V/DIV => $$
 
-$$ s = 2500 \ V/s $$
+$$slope = 2500 \ V/s $$
 
 To target this slope, the calibration firmware instructs the technician to highlight
 the 2nd and 10th timing markers and to superimpose them in the B-sweep. It then
-sets the two delay references to a difference of $$8 d $$, which works out to
+sets the two delay references to a difference of $$8 d_{CRT} $$, which works out to
 $$\Delta d = 8 \ DIV * 0.25 \ V/DIV = 2 \ V $$.
 
 Once the technician has aligned the two timing markers as instructed, the target slope
@@ -169,11 +169,12 @@ It's worth noting that the 10X gain is set to the timing markers, which is the o
 where the CRT is calibrated directly to timing markers.
 
 After this step concludes, the horizontal 1X CRT deflection factor has been calibrated to
-$$d = 0.25 \ V/DIV$$ and the centered to the mid-range of the sweep extents.
+$$d_{CRT} = 0.25 \ V/DIV$$ and the centered to the mid-range of the sweep extents.
 It then follows that any sweep speed $$v \ DIV/s $$ can be converted to a calibrated slope
-by $$s = 1/v * d $$.
+by $$slope = 1/v * d_{CRT} $$.
 
-The 10X deflection factor has also been calibrated to $$d_{10X} = 25 \ mV/DIV$$.
+The 10X horizontal deflection factor has also been calibrated to
+$$d_{CRT 10X} = 25 \ mV/DIV$$.
 
 
 TODO(siggi):
