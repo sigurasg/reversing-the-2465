@@ -222,12 +222,16 @@ These steps are fairly confusing to the uninitiated[^2].
 The principle is the same as with the A-sweeps, but as the bench scope is unable
 to highlight the interesting timing markers, it's important for the technician
 to have a solid mental image of what's going on, which is this:
-1. The B-gate outputs alternate timing references for the bench scope to trigger on.
-2. The technician needs to adjust the offset and sweep slope to align two timing
+1. The scope under calibration is triggering on a timing marker $$t_0$$, but the
+   B-sweep hybrid then delays the B-gate output alternately with reference to
+   $$d_0$$ and $$d_1$$.
+1. This allows the bench scope to trigger on timing references that are derived
+   from the scope under calibration sweep speed.
+1. The technician needs to adjust the offset and sweep slope to align two timing
    markers on the bench scope's CRT.
-3. The principle involed is the same as with the A-sweeps, but if one
+1. The principle involed is the same as with the A-sweeps, but if one
    or both timing markers are off the CRT then it may be hard hard to orient.
-4. The key thing to note is that that the `DLY POS` control "slides" across
+1. The key thing to note is that that the `DLY POS` control "slides" across
    the timing markers, while the $$\Delta $$ control adjusts their distance.
 
 [^2]: I'm speaking from personal experience here, I found this part of
