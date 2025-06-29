@@ -81,7 +81,7 @@ set to a highly accurate voltage.
 
 Once each sweep slope $$s_i$$ has been calibrated to specific $$ s_i = V / s $$ value, and the CRT
 has been calibrated to $$ d_{CRT} = 0.25 \ V/DIV $$, the sweeps will generate a calibrated speed of
-$$ v_i = 1/(s_i \ V/s) * 0.25 \ V/DIV = 0.25/c_i \ s/DIV$$.
+$$ v_i = 1/(s_i \ V/s) * 0.25 \ V/DIV = 0.25/s_i \ s/DIV$$.
 
 ### Details
 
