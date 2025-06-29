@@ -43,8 +43,8 @@ is implemented electronically.
 
 ### Sweep Slope
 
-To set up a particular sweep slope, a 7 bit serial bitstring is shifted into the Sweep DAC die, which
-selects the coarse-level current generator and the timing capacitor.
+To set up a particular sweep slope, first a 7 bit serial bitstring is shifted into the Sweep DAC die.
+This selects the current generator that decides the coarse-level current as well as the timing capacitor involved.
 The slope is then selected or adjusted with a `timing reference` analog voltage from the A5 board,
 which is one of `A_TIM_REF` or `B_TIM_REF` for the A or B sweeps respectively.
 Since the sweep current is linearly related to the `timing reference` voltage, so is the sweep slope.
@@ -57,52 +57,65 @@ the 2465-series has calibrated sweep speeds even with the SEC/DIV `VAR` control 
 
 Each sweep hybrid contains a fast comparator that compares the sweep ramp to a `delay reference`
 analog voltage on the `DR` pin of the sweep hybrid.
-This is primarily used to initiate delay sweeps, but is also used in sneaky ways during calibration.
+This is primarily used to initiate delay sweeps, but is also used in ingenious ways during sweep calibration.
 The A5 board generates two delay reference signals, namely `DLY_REF_0` and `DLY_REF_1`, hereafter
 named $$d_0 $$ and $$d_1 $$.
-Both of those can be routed to both sweep hybrids under control of the Display Sequencer.
-Under dual delay sweeps, the two voltages are alternately routed to the `DR` pin by logic in the
-Display Sequencer.
+Both of those can be routed to either sweep hybrid under control of the Display Sequencer.
+Under dual delay sweeps, these two voltages are alternately routed to the `DR` pin by logic in the Display Sequencer.
 
 # Sweep Calibration
 
 ## Principle
 
 The principle of sweep calibration in the 2465 series is that a series of calibrated sweep
-slopes are configured, using a technician as a comparator against a calibrated timing signal.
+slopes are configured against a calibrated timing signal.
 The delay comparators in the sweep hybrids are used to create a target slope for the
 technician to match, which allows sweep slope calibration without regard to CRT calibration.
+In this process, the technician serves only as a comparator, using his or her mark one eyeball
+to compare timing markers on the CRT.
 
-Note that the calibrated sweep slopes all assume the same CRT deflection factor
-$$d_{CRT} = c \ V/DIV $$, where $$c = 0.25 $$.
-Once the first sweep slope has been established, the horizontal gains are adjusted to set the
-CRT to this normalized deflection factor, in order to obtain calibrated sweeps in
-seconds per DIV.
+Independent to the sweep slopes, the CRT is calibrated to a deflection factor of $$ d_{CRT} = 0.25 \ DIV/V$$.
+This is done by calibrating the CRT gains against the horizontal cursors.
+The cursor positions are controlled with voltages from the A5 board, which means they can each be
+set to a highly accurate voltage.
+
+Once each sweep $$i$$ has been calibrated to specific $$ c_i = V / s $$ value, and the CRT
+has been calibrated to $$ d_{CRT} = 0.25 \ DIV/V $$, the sweeps will generate a calibrated
+speed of $$ s_i = c_i \ V/s * 0.25 \ DIV/V = 0.25c_i \ DIV/s$$.
 
 ### Details
 
 For each target slope, the calibration firmware creates a target for the technician to aim for,
 by setting $$\Delta d = d_1 - d_0 $$ to a voltage difference that matches the targeted
-time delta. So, as an example, at a sweep speed of $$v = 100 \ \mu s/DIV $$, the targeted
-slope is
+time delta. So, as an example, at a sweep speed of $$v = 100 \ {\mu s}/DIV $$, the targeted
+slope is:
 
-$$slope = 1/v \ DIV/s \ d_{CRT} \ V/DIV => $$
+$$slope = 1/(v \ DIV/s) \ (d_{CRT} \ V/DIV) => $$
 
-$$slope = 1/(100 \ 10^-6) \ DIV/s \ 0.25 \ V/DIV => $$
+$$ slope = (d_{CRT} \ V/DIV)/(v \ DIV/s) => $$
 
-$$slope = 1/(10^-4) \ DIV/s \ 0.25 \ V/DIV => $$
+$$ slope = d_{CRT}/v \ V/s => $$
 
-$$slope = 2500 \ V/s $$
+$$ slope = 0.25/100 \ 10^{-6} \ V/s => $$
 
-To target this slope, the calibration firmware instructs the technician to highlight
-the 2nd and 10th timing markers and to superimpose them in the B-sweep. It then
-sets the two delay references to a difference of $$8 d_{CRT} $$, which works out to
-$$\Delta d = 8 \ DIV * 0.25 \ V/DIV = 2 \ V $$.
+$$ slope = 2500 \ V/s $$
+
+To target this slope, the calibration firmware sets the two delay references to a
+difference of $$8 d_{CRT} $$, which works out to
+$$ \Delta d = 8 \ DIV * 0.25 \ V/DIV = 2 \ V $$.
+
+The technician is then instructed to highlight the 2nd and 10th timing markers and
+to superimpose them in the B-sweep (or on a bench scope).
+This alignment is attained by adjusting the two timing references, in order to move
+the target markers into view, then adjusting the sweep slope to overlay them
+on the CRT.
+This overlaying is done with the B-sweep (or a bench scope) in order to magnify the
+timing makers, which allows a high degree of accuracy in aligning them.
 
 Once the technician has aligned the two timing markers as instructed, the target slope
-has been attained with a high degree of accuracy.
+has been attained with great accuracy.
 Since the $$d_0 $$ and $$d_1 $$ signals have pretty high resolution (somewhere in excess
-of 350 steps/DIV), and because the B-sweep (or the bench scope) have a time magnifiying
+of 350 steps/DIV), and because the B-sweep (or the bench scope) have a magnifiying
 effect, the target slope alignment is much more accurate than the old timey practice
 that involved aligning timing markers to a CRT.
 
@@ -110,7 +123,7 @@ that involved aligning timing markers to a CRT.
 
 ### Prerequisites
 
-It's important to validate all power supplies and to perform the DAC calibration before
+It's important to validate all power supplies, and to perform the DAC calibration before
 attempting the sweep calibration.
 If the power supplies are no good, then the calibration is unlikely to succeed.
 If the DAC is out a little, the calibration may succeed, but any future calibration is
@@ -139,12 +152,12 @@ allow limit checking on the slope/offset values.
 ### Reference slope
 
 The next significant step (step `r)` in the 2465B calibration sequence) involves setting
-up the first reference slope, which *after* CRT adjustment will be $$100\mu \ s/DIV $$.
+up the first reference slope, which *after* CRT adjustment will be $$100 \ {\mu s}/DIV $$.
 
 To do this, the calibration firmware initiates a sweep that has a slope fairly close to
 the expected end result. In the case of prior calibration, this slope will be the prior
 calibrated slope.
-A target slope is then set, using the delay references as discussed above.
+A target slope is then set, using the delay references as diDeltascussed above.
 
 The technician is then directed to use the `DLY POS` and $$\Delta $$ controls to highlight the
 2nd and 10th timing markers on the A-sweep and to superimpose the timing markers on the B-sweep.
@@ -154,7 +167,10 @@ and $$d_1 $$ voltages by the same amount.
 
 Once this is achieved, the target slope has been set.
 
-TODO(siggi): Discuss steps `t)` to `v)`.
+Steps `t)` through `v)` test the linearity of the sweep hybrid by dropping the slope to
+$$ 300 {\mu s}/DIV $$ and comparing the timing markers agains that sweep.
+
+Steps `w)` through `x)` re-test the $$ 100 \ {\mu s}/DIV $$ sweep slope.
 
 ### Horizontal CRT calibration
 
@@ -170,14 +186,53 @@ It's worth noting that the 10X gain is set to the timing markers, which is the o
 where the CRT is calibrated directly to timing markers.
 
 After this step concludes, the horizontal 1X CRT deflection factor has been calibrated to
-$$d_{CRT} = 0.25 \ V/DIV$$ and the centered to the mid-range of the sweep extents.
+$$d_{CRT} = 0.25 \ V/DIV$$, centered to the mid-range of the sweep extents.
 It then follows that any sweep speed $$v \ DIV/s $$ can be converted to a calibrated slope
 by $$slope = 1/v * d_{CRT} $$.
 
 The 10X horizontal deflection factor has also been calibrated to
 $$d_{CRT 10X} = 25 \ mV/DIV$$.
 
+### More A-sweep slopes
 
-TODO(siggi):
-  1. Rest of A-sweep calibration.
-  2. Discuss B-sweep calibration.
+Steps `bb)` through `ff)` calibrate the remaining A-sweep slopes by the method
+described above.
+
+### B-sweep slopes.
+
+Steps `gg)` through `jj)` calibrate the B-sweep slopes by the same principle[^1] as
+the A-sweep slopes are calibrated.
+
+[^1]: The calibration proceedure for the origional 2465 calibrates the
+    B-sweep in the more conventional manner, e.g. by by aligning timing markers
+    to the graticule. As of the 2445A/2465A/2467, the B-sweep is calibrated with
+    the aid of a second scope, which is the proceedure discussed below.
+
+The difference is that the scope itself does not have any hardware to display
+magnified timing markers for the B-sweep.
+In order to overcome this limitation, the output of the B-sweep hybrids'
+delay comparator is routed to the B-sweep gate of the scope.
+This is done with dedicated circuitry, whose sole purpose in life is to
+aid calibration.
+This signal routing allows the use of a second scope to provide the timing marker
+magnification, which allows the B-sweep to be calibrated with the same accuracy as
+the A-sweep.
+
+These steps are fairly confusing to the uninitiated[^2].
+The principle is the same as with the A-sweeps, but as the bench scope is unable
+to highlight the interesting timing markers, it's important for the technician
+to have a solid mental image of what's going on, which is this:
+1. The bench scope is triggering on alternate delay timing references.
+2. The technician needs to overlay two timing markers on the CRT.
+3. The principle involed is the same as with the A-sweeps, but if one
+   or both timing markers are off the CRT, then it's hard to orient.
+4. The key thing to note is that that the `DLY POS` control "slides" across
+   the timing markers, while the $$\Delta $$ control adjusts their distance.
+
+If both markers are off the CRT, it might be helpful to slow down the sweep
+speed to get a better sense for what's happening. Once both markers are
+positioned towards the front of the slower sweep, it's time to switch to
+the specified sweep speed to align them.
+
+[^2]: I'm speaking from personal experience here, I found this part of
+    the calibration process quite confusing when I calibrated my 2467.
