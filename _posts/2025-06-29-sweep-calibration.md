@@ -74,14 +74,14 @@ technician to match, which allows sweep slope calibration without regard to CRT 
 In this process, the technician serves only as a comparator, using his or her mark one eyeball
 to compare timing markers on the CRT.
 
-Independent to the sweep slopes, the CRT is calibrated to a deflection factor of $$ d_{CRT} = 0.25 \ DIV/V$$.
+Independent to the sweep slopes, the CRT is calibrated to a deflection factor of $$ d_{CRT} = 0.25 \ V/DIV$$.
 This is done by calibrating the CRT gains against the horizontal cursors.
 The cursor positions are controlled with voltages from the A5 board, which means they can each be
 set to a highly accurate voltage.
 
-Once each sweep $$i$$ has been calibrated to specific $$ c_i = V / s $$ value, and the CRT
-has been calibrated to $$ d_{CRT} = 0.25 \ DIV/V $$, the sweeps will generate a calibrated
-speed of $$ s_i = c_i \ V/s * 0.25 \ DIV/V = 0.25c_i \ DIV/s$$.
+Once each sweep slope $$s_i$$ has been calibrated to specific $$ s_i = V / s $$ value, and the CRT
+has been calibrated to $$ d_{CRT} = 0.25 \ V/DIV $$, the sweeps will generate a calibrated speed of
+$$ v_i = 1/(s_i \ V/s) * 0.25 \ V/DIV = 0.25/c_i \ s/DIV$$.
 
 ### Details
 
@@ -90,9 +90,9 @@ by setting $$\Delta d = d_1 - d_0 $$ to a voltage difference that matches the ta
 time delta. So, as an example, at a sweep speed of $$v = 100 \ {\mu s}/DIV $$, the targeted
 slope is:
 
-$$slope = 1/(v \ DIV/s) \ (d_{CRT} \ V/DIV) => $$
+$$slope = 1/(v \ s/DIV) \ (d_{CRT} \ V/DIV) => $$
 
-$$ slope = (d_{CRT} \ V/DIV)/(v \ DIV/s) => $$
+$$ slope = (d_{CRT} \ V/DIV)/(v \ s/DIV) => $$
 
 $$ slope = d_{CRT}/v \ V/s => $$
 
