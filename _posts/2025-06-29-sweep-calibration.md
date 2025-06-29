@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "2465 Sweep Calibration"
-date: 2025-01-22
+date: 2025-06-29
 author: Sigurður Ásgeirsson
 ---
 
@@ -16,7 +16,7 @@ through the firmware.
 
 # Background
 
-The 2465 series scopes are drive-by-wire, where there is an MPU that controls most
+The 2465-series scopes are drive-by-wire, where there is an MPU that controls most
 of the hardware.
 The hardware is generally controlled in one of two ways:
   1. Through bitstreams that are shifted into and sometimes out of the various hybrids.
@@ -67,7 +67,7 @@ Under dual delay sweeps, these two voltages are alternately routed to the `DR` p
 
 ## Principle
 
-The principle of sweep calibration in the 2465 series is that a series of calibrated sweep
+The principle of sweep calibration in the 2465-series is that a series of calibrated sweep
 slopes are configured against a calibrated timing signal.
 The delay comparators in the sweep hybrids are used to create a target slope for the
 technician to match, which allows sweep slope calibration without regard to CRT calibration.
@@ -131,7 +131,7 @@ likely to need a full redo.
 If the DAC is out a lot, the calibration will likely fail with the dreaded `LIMITS`
 error.
 
-### Pre-flight checking
+### Preflight checking
 
 The first step in the sweep calibration is to to verify that the $$d_0 $$ and $$d_1 $$
 signals are in concordance.
@@ -141,10 +141,10 @@ on the same timing mark, and the B-sweep magnified timing markers are superimpos
 It's a fair guess that if the DAC codes used to set the two delay reference voltages are
 not near-identical, then the dreaded `LIMITS` error will occur.
 
-It is noteworthy that those two signals are staight up buffered from the DAC on the
+It is noteworthy that those two signals are staight-up buffered from the DAC on the
 A5 board.
 This is not a trivial detail, as if these were offset or scaled, component differences
-in the op-amp circuits could cause offset or slope differences.
+in the op-amp circuits could cause offset or slope differences between the two.
 This would at minimum require at least one more calibration step to find the relative slope
 and/or offset differences between the two delay signals, and at the same time would only
 allow limit checking on the slope/offset values.
@@ -168,7 +168,7 @@ and $$d_1 $$ voltages by the same amount.
 Once this is achieved, the target slope has been set.
 
 Steps `t)` through `v)` test the linearity of the sweep hybrid by dropping the slope to
-$$ 300 {\mu s}/DIV $$ and comparing the timing markers agains that sweep.
+$$ 300 \ {\mu s}/DIV $$ and comparing the timing markers agains that sweep.
 
 Steps `w)` through `x)` re-test the $$ 100 \ {\mu s}/DIV $$ sweep slope.
 
@@ -179,11 +179,11 @@ gains to align the cursors and timing markers to the CRT.
 
 Note that the cursors are derived from the DAC voltages the same way the timing references,
 so the calibration firmware can set the cursors to specific locations that match up with
-graticule markers with the same precision as defines the sweep slopes.
+graticule markers with the same precision that defines the sweep slopes.
 This allows highly accurate calibration of the gain and offset for the CRT
 with respect to the cursors, and hence the sweep slopes.
 It's worth noting that the 10X gain is set to the timing markers, which is the only case
-where the CRT is calibrated directly to timing markers.
+where the CRT is calibrated directly to timing markers[^1].
 
 After this step concludes, the horizontal 1X CRT deflection factor has been calibrated to
 $$d_{CRT} = 0.25 \ V/DIV$$, centered to the mid-range of the sweep extents.
@@ -212,7 +212,7 @@ The difference is that the scope itself does not have any hardware to display
 magnified timing markers for the B-sweep.
 In order to overcome this limitation, the output of the B-sweep hybrids'
 delay comparator is routed to the B-sweep gate of the scope.
-This is done with dedicated circuitry, whose sole purpose in life is to
+This is done with dedicated circuitry whose sole purpose in life is to
 aid calibration.
 This signal routing allows the use of a second scope to provide the timing marker
 magnification, which allows the B-sweep to be calibrated with the same accuracy as
@@ -222,17 +222,18 @@ These steps are fairly confusing to the uninitiated[^2].
 The principle is the same as with the A-sweeps, but as the bench scope is unable
 to highlight the interesting timing markers, it's important for the technician
 to have a solid mental image of what's going on, which is this:
-1. The bench scope is triggering on alternate delay timing references.
-2. The technician needs to overlay two timing markers on the CRT.
+1. The B-gate outputs alternate timing references for the bench scope to trigger on.
+2. The technician needs to adjust the offset and sweep slope to align two timing
+   markers on the bench scope's CRT.
 3. The principle involed is the same as with the A-sweeps, but if one
-   or both timing markers are off the CRT, then it's hard to orient.
+   or both timing markers are off the CRT then it may be hard hard to orient.
 4. The key thing to note is that that the `DLY POS` control "slides" across
    the timing markers, while the $$\Delta $$ control adjusts their distance.
 
-If both markers are off the CRT, it might be helpful to slow down the sweep
-speed to get a better sense for what's happening. Once both markers are
-positioned towards the front of the slower sweep, it's time to switch to
-the specified sweep speed to align them.
-
 [^2]: I'm speaking from personal experience here, I found this part of
     the calibration process quite confusing when I calibrated my 2467.
+
+If both markers are off the CRT, it might be helpful to slow down the sweep
+speed on the bench scope to get a better sense for what's happening.
+Once both markers are positioned towards the front of the slower sweep, it's
+time to switch to the specified sweep speed to align them.
