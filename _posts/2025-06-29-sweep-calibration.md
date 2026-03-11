@@ -157,7 +157,7 @@ up the first reference slope, which *after* CRT adjustment will be $$100 \ {\mu 
 To do this, the calibration firmware initiates a sweep that has a slope fairly close to
 the expected end result. In the case of prior calibration, this slope will be the prior
 calibrated slope.
-A target slope is then set, using the delay references as diDeltascussed above.
+A target slope is then set, using the delay references as discussed above.
 
 The technician is then directed to use the `DLY POS` and $$\Delta $$ controls to highlight the
 2nd and 10th timing markers on the A-sweep and to superimpose the timing markers on the B-sweep.
